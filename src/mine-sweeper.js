@@ -23,9 +23,62 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+   const arr = matrix.flat();
+   const delta = matrix[0].length;
+   const arrResult = [];
+   for (let i = 0; i < arr.length; i++) {
+     let sum = 0;
+ 
+     if (arr[i - delta - 1] === true) {
+       sum = sum + 1;
+     } else {
+       sum = sum + 0;
+     }
+     if (arr[i - delta] === true) {
+       sum = sum + 1;
+     } else {
+       sum = sum + 0;
+     }
+     if (arr[i - delta + 1] && (i - delta + 1 != 0) === true) {
+       sum = sum + 1;
+     } else {
+       sum = sum + 0;
+     }
+     if (arr[i - 1] === true) {
+       sum = sum + 1;
+     } else {
+       sum = sum + 0;
+     }
+     if (arr[i + 1] === true) {
+       sum = sum + 1;
+     } else {
+       sum = sum + 0;
+     }
+     if (arr[i + delta - 1] === true) {
+       sum = sum + 1;
+     } else {
+       sum = sum + 0;
+     }
+     if (arr[i + delta] === true) {
+       sum = sum + 1;
+     } else {
+       sum = sum + 0;
+     }
+     if (arr[i + delta + 1] === true) {
+       sum = sum + 1;
+     } else {
+       sum = sum + 0;
+     }
+ 
+     arrResult.push(sum);
+ 
+   }
+   const result = [];
+   for (i = 0; i < arrResult.length; i = i + 3) {
+    result.push(arrResult.slice(i, i + delta));
+   }
+   return result
 }
 
 module.exports = {
